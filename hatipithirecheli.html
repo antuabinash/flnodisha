@@ -25,35 +25,6 @@
             height: 100%;
             gap: 20px;
         }
-        .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #333;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-
-    .header .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .header .logo img {
-      width: 40px;
-      height: 40px;
-      margin-right: 10px;
-    }
-
-    .header .website-name {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
 
         .tile {
             display: flex;
@@ -63,8 +34,8 @@
             color: white;
             font-size: 24px;
             font-weight: bold;
-            width: 100%;
-            height: 100px;
+            width: 80%;
+            height: 150px;
             border-radius: 15px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -91,11 +62,34 @@
             background: linear-gradient(45deg, #56ccf2, #2f80ed);
         }
 
-        .offline-image {
+        /* Video Overlay */
+        .video-overlay {
             display: none;
-            width: 200px;
-            height: auto;
-            margin-top: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .video-overlay iframe {
+            width: 80%;
+            height: 60%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
         }
 
         @media (min-width: 768px) {
@@ -112,12 +106,6 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-          <img src="https://via.placeholder.com/40" alt="Logo">
-          <span class="website-name">ହାତୀ ପିଠିରେ ଛେଳି</span>
-        </div>
-      </header>
     <div class="container">
         <div class="tile tile-1" onclick="openVideo()">
             🎥 ଭିଡ଼ିଓ
@@ -129,19 +117,26 @@
             📖 ଗପ
         </div>
     </div>
-
-    <img src="offline.png" alt="Offline" class="offline-image" id="offlineImage">
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay" id="videoOverlay">
+        <div class="close-button" onclick="closeVideo()">✖</div>
+        <iframe id="videoIframe" src="" allow="autoplay; encrypted-media"></iframe>
+    </div>
 
     <script>
         function openVideo() {
             if (navigator.onLine) {
-                let videoUrl = "https://www.youtube.com/embed/zN5UYtbhn-Y?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&cc_load_policy=0";
-                let newWindow = window.open(videoUrl, "_blank", "fullscreen=yes");
-                newWindow.focus();
+                document.getElementById('videoOverlay').style.display = 'flex';
+                document.getElementById('videoIframe').src = "https://www.youtube.com/embed/zN5UYtbhn-Y?autoplay=1";
             } else {
-                document.getElementById('offlineMessage').style.display = 'block';
-                document.getElementById('offlineImage').style.display = 'block';
+                alert("No internet connection. Please try again later.");
             }
+        }
+
+        function closeVideo() {
+            document.getElementById('videoOverlay').style.display = 'none';
+            document.getElementById('videoIframe').src = ""; // Stop the video when closed
         }
 
         function openLink() {
@@ -149,7 +144,6 @@
         }
 
         function openStory() {
-            // Placeholder function for ଗପ tile
             window.location.href = "story-page.html"; // Replace with your actual story link
         }
     </script>
