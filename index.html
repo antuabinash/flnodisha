@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Interactive Tiles</title>
+  <style>
+    /* Reset and basic styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header strip styling */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .header .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .header .website-name {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    /* Centered container for tiles */
+    .tile-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      padding: 200px 20px 20px;
+    }
+
+    /* Individual tile styles */
+    .tile {
+      flex: 1 1 200px;
+      max-width: 200px;
+      height: 250px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tile:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+      transform: scale(2);
+      transition: transform 0.4s;
+      z-index: 0;
+    }
+    .tile:hover::before {
+      transform: scale(1);
+    }
+
+    .tile-icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+      z-index: 1;
+    }
+    .tile-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+      z-index: 1;
+    }
+    .tile-text {
+      font-size: 0.9em;
+      color: #555;
+      padding: 0 10px;
+      z-index: 1;
+    }
+
+    .class-1 { background: linear-gradient(to top, #ff9a9e 0%, #fad0c4 100%); }
+    .class-2 { background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%); }
+    .class-3 { background: linear-gradient(to top, #ffecd2 0%, #fcb69f 100%); }
+    .teacher { background: linear-gradient(to top, #a1c4fd 0%, #c2e9fb 100%); }
+
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <img src="https://via.placeholder.com/40" alt="Logo">
+      <span class="website-name">My Website</span>
+    </div>
+  </header>
+
+  <!-- Centered Tile Container -->
+  <div class="tile-container">
+    <a href="class1.html" class="tile class-1">
+      <div class="tile-icon">📚</div>
+      <div class="tile-title">Class 1</div>
+      <div class="tile-text">Explore engaging lessons and activities.</div>
+    </a>
+
+    <a href="class2.html" class="tile class-2">
+      <div class="tile-icon">🎨</div>
+      <div class="tile-title">Class 2</div>
+      <div class="tile-text">Discover creativity and new skills.</div>
+    </a>
+
+    <a href="class3.html" class="tile class-3">
+      <div class="tile-icon">🔬</div>
+      <div class="tile-title">Class 3</div>
+      <div class="tile-text">Dive into exciting scientific concepts.</div>
+    </a>
+
+    <a href="teacher.html" class="tile teacher">
+      <div class="tile-icon">👩‍🏫</div>
+      <div class="tile-title">Teacher</div>
+      <div class="tile-text">Resources and tools for educators.</div>
+    </a>
+  </div>
+
+</body>
+</html>
