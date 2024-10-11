@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #fffff
+            background: #ffffff;
             font-family: Arial, sans-serif;
         }
 
@@ -25,6 +25,35 @@
             height: 100%;
             gap: 20px;
         }
+        .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .header .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .header .website-name {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
 
         .tile {
             display: flex;
@@ -34,8 +63,8 @@
             color: white;
             font-size: 24px;
             font-weight: bold;
-            width: 80%;
-            height: 150px;
+            width: 100%;
+            height: 100px;
             border-radius: 15px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -58,12 +87,8 @@
             background: linear-gradient(45deg, #ff6a00, #ee0979);
         }
 
-        .offline-message {
-            display: none;
-            text-align: center;
-            color: red;
-            font-size: 20px;
-            margin-top: 10px;
+        .tile-3 {
+            background: linear-gradient(45deg, #56ccf2, #2f80ed);
         }
 
         .offline-image {
@@ -80,44 +105,52 @@
             }
 
             .tile {
-                width: 40%;
+                width: 30%;
                 height: 200px;
             }
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="logo">
+          <img src="https://via.placeholder.com/40" alt="Logo">
+          <span class="website-name">ହାତୀ ପିଠିରେ ଛେଳି</span>
+        </div>
+      </header>
     <div class="container">
         <div class="tile tile-1" onclick="openVideo()">
-            🎥 Play YouTube Video
+            🎥 ଭିଡ଼ିଓ
         </div>
         <div class="tile tile-2" onclick="openLink()">
-            📄 Open HTML Page
+            📄 ଶବ୍ଦ
+        </div>
+        <div class="tile tile-3" onclick="openStory()">
+            📖 ଗପ
         </div>
     </div>
-    
-    <div class="offline-message" id="offlineMessage">
-        No Internet Connection. Please try again later.
-    </div>
+
     <img src="offline.png" alt="Offline" class="offline-image" id="offlineImage">
 
     <script>
         function openVideo() {
             if (navigator.onLine) {
-                // If online, open the video in fullscreen
                 let videoUrl = "https://www.youtube.com/embed/zN5UYtbhn-Y?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&cc_load_policy=0";
                 let newWindow = window.open(videoUrl, "_blank", "fullscreen=yes");
                 newWindow.focus();
             } else {
-                // If offline, show the offline message and image
                 document.getElementById('offlineMessage').style.display = 'block';
                 document.getElementById('offlineImage').style.display = 'block';
             }
         }
 
         function openLink() {
-            // Open another HTML link
             window.location.href = "your-page.html"; // Replace with your actual link
+        }
+
+        function openStory() {
+            // Placeholder function for ଗପ tile
+            window.location.href = "story-page.html"; // Replace with your actual story link
         }
     </script>
 </body>
